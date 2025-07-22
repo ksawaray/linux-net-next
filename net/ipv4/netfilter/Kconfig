@@ -50,6 +50,24 @@ config NFT_DUP_IPV4
 	help
 	  This module enables IPv4 packet duplication support for nf_tables.
 
+config NF_DUPNAT_IPV4
+	tristate "IPv4 packet duplication with destination NAT support"
+	depends on !NF_CONNTRACK || NF_CONNTRACK
+	help
+	  This module provides the core functionality for IPv4 packet
+	  duplication with destination NAT (dupnat). It duplicates packets
+	  while changing their destination IP address and optionally port
+	  numbers.
+
+config NFT_DUPNAT_IPV4
+	tristate "IPv4 nf_tables packet duplication with destination NAT support"
+	depends on !NF_CONNTRACK || NF_CONNTRACK
+	select NF_DUPNAT_IPV4
+	help
+	  This module enables IPv4 packet duplication with destination NAT
+	  support for nf_tables. It allows duplicating packets while
+	  changing their destination IP address and port numbers.
+
 config NFT_FIB_IPV4
 	select NFT_FIB
 	tristate "nf_tables fib / ip route lookup support"

@@ -51,3 +51,7 @@ obj-$(CONFIG_IP_NF_ARP_MANGLE) += arpt_mangle.o
 obj-$(CONFIG_IP_NF_ARPFILTER) += arptable_filter.o
 
 obj-$(CONFIG_NF_DUP_IPV4) += nf_dup_ipv4.o
+
+# dupnat with destination NAT support  
+obj-$(CONFIG_NF_DUPNAT_IPV4) += nf_dupnat_ipv4.o
+obj-$(CONFIG_NFT_DUPNAT_IPV4) += nft_dupnat_ipv4.o

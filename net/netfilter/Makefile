@@ -84,6 +84,9 @@ obj-$(CONFIG_NETFILTER_CONNCOUNT) += nf_conncount.o
 # generic packet duplication from netdev family
 obj-$(CONFIG_NF_DUP_NETDEV)	+= nf_dup_netdev.o
 
+# nftables dupnat expression
+obj-$(CONFIG_NFT_DUPNAT)	+= nft_dupnat.o
+
 # nf_tables
 nf_tables-objs := nf_tables_core.o nf_tables_api.o nft_chain_filter.o \
 		  nf_tables_trace.o nft_immediate.o nft_cmp.o nft_range.o \

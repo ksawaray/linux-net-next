@@ -689,6 +689,18 @@ config NFT_DUP_NETDEV
 	help
 	  This option enables packet duplication for the "netdev" family.
 
+config NFT_DUPNAT
+	tristate "Netfilter nf_tables packet duplication with destination NAT support"
+	select NF_DUP_NETDEV
+	help
+	  This option enables packet duplication with destination NAT
+	  support for nf_tables. Allows duplicating packets while changing
+	  their destination IP address and port numbers.
+
+	  This is useful for traffic monitoring, mirroring, and analysis
+	  scenarios where you need to duplicate packets to another
+	  destination.
+
 config NFT_FWD_NETDEV
 	tristate "Netfilter nf_tables netdev packet forwarding support"
 	select NF_DUP_NETDEV
