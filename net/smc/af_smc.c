@@ -3104,13 +3104,20 @@ int smc_setsockopt(struct socket *sock, int level, int optname,
 	}
 	mutex_unlock(&smc->clcsock_release_lock);
 
-	if (optlen < sizeof(int))
-		return -EINVAL;
-	if (copy_from_sockptr(&val, optval, sizeof(int)))
-		return -EFAULT;
+	if (rc)
+		return rc;
+
+	if (optname == TCP_NODELAY ||
+		optname == TCP_CORK ||
+		optname == TCP_DEFER_ACCEPT) {
+		if (optlen < sizeof(int))
+			return -EINVAL;
+		if (copy_from_sockptr(&val, optval, sizeof(int)))
+			return -EFAULT;
+	}
 
 	lock_sock(sk);
-	if (rc || smc->use_fallback)
+	if (smc->use_fallback)
 		goto out;
 	switch (optname) {
 	case TCP_FASTOPEN:
